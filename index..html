@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHUSUN — Business Model</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a2e1a;
+    --green-mid: #2d5a27;
+    --green-bright: #4a9e3f;
+    --green-light: #7ecb6f;
+    --green-pale: #c8edc2;
+    --cream: #f5f0e8;
+    --warm-white: #faf7f2;
+    --amber: #d4870a;
+    --amber-light: #f5c842;
+    --text-dark: #1a1a0f;
+    --text-mid: #3d4a2e;
+    --text-light: #6b7a5a;
+    --border: rgba(74, 158, 63, 0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text-dark);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--green-deep);
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,158,63,0.15) 0%, transparent 70%);
+  }
+
+  .hero::after {
+    content: 'غصن';
+    position: absolute;
+    bottom: -40px; right: 40px;
+    font-family: 'Syne', sans-serif;
+    font-size: 200px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: -10px;
+    user-select: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(74,158,63,0.3);
+    border: 1px solid var(--green-bright);
+    color: var(--green-light);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span { color: var(--green-light); }
+
+  .hero-sub {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: rgba(245,240,232,0.5);
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 700px;
+  }
+
+  .hero-stat {
+    background: var(--green-deep);
+    padding: 20px 24px;
+  }
+
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-light);
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 700;
+    color: var(--green-deep);
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+    line-height: 1.1;
+  }
+
+  /* TIERS GRID */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .tier {
+    background: var(--warm-white);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .tier:hover { background: #f0ede5; }
+
+  .tier.featured {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+
+  .tier.featured:hover { background: #1e3520; }
+
+  .tier-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .tier.featured .tier-badge {
+    background: var(--green-bright);
+    color: white;
+  }
+
+  .tier:not(.featured) .tier-badge {
+    background: var(--green-pale);
+    color: var(--green-mid);
+  }
+
+  .tier-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .tier-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .tier.featured .tier-name { color: var(--green-light); }
+  .tier:not(.featured) .tier-name { color: var(--green-deep); }
+
+  .tier-target {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
+
+  .tier.featured .tier-target { color: rgba(245,240,232,0.5); }
+  .tier:not(.featured) .tier-target { color: var(--text-light); }
+
+  .tier-price-block { margin-bottom: 28px; }
+
+  .tier-price-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .tier.featured .tier-price-label { color: rgba(245,240,232,0.4); }
+  .tier:not(.featured) .tier-price-label { color: var(--text-light); }
+
+  .tier-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .tier.featured .tier-price { color: var(--amber-light); }
+  .tier:not(.featured) .tier-price { color: var(--green-mid); }
+
+  .tier-price-note {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .tier.featured .tier-price-note { color: rgba(245,240,232,0.4); }
+  .tier:not(.featured) .tier-price-note { color: var(--text-light); }
+
+  .tier-divider {
+    height: 1px;
+    margin: 20px 0;
+  }
+
+  .tier.featured .tier-divider { background: rgba(255,255,255,0.1); }
+  .tier:not(.featured) .tier-divider { background: var(--border); }
+
+  .tier-section-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .tier.featured .tier-section-label { color: var(--green-light); }
+  .tier:not(.featured) .tier-section-label { color: var(--green-bright); }
+
+  .tier-features {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .tier-features li {
+    font-size: 12px;
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .tier-features li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+  }
+
+  .tier.featured .tier-features li { color: rgba(245,240,232,0.8); }
+  .tier.featured .tier-features li::before { color: var(--green-light); }
+  .tier:not(.featured) .tier-features li { color: var(--text-mid); }
+  .tier:not(.featured) .tier-features li::before { color: var(--green-bright); }
+
+  .tier-missing li::before { content: '—'; color: #aaa !important; }
+  .tier.featured .tier-missing li { color: rgba(245,240,232,0.25); }
+  .tier:not(.featured) .tier-missing li { color: #bbb; }
+
+  /* COST BREAKDOWN TABLE */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .cost-table th {
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--green-bright);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .cost-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+    vertical-align: top;
+  }
+
+  .cost-table tr:hover td { background: rgba(74,158,63,0.04); }
+
+  .cost-table .item-name {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .cost-table .price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    color: var(--green-mid);
+    white-space: nowrap;
+  }
+
+  .cost-table .category-row td {
+    background: var(--green-pale);
+    color: var(--green-deep);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    font-weight: 600;
+  }
+
+  /* PHASE ROADMAP */
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .phase {
+    background: var(--warm-white);
+    padding: 32px;
+  }
+
+  .phase-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--green-pale);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .phase-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+
+  .phase-period {
+    font-size: 11px;
+    color: var(--green-bright);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .phase ul {
+    list-style: none;
+  }
+
+  .phase ul li {
+    font-size: 12px;
+    color: var(--text-mid);
+    padding: 6px 0;
+    padding-left: 16px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+    line-height: 1.4;
+  }
+
+  .phase ul li:last-child { border-bottom: none; }
+
+  .phase ul li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    font-size: 7px;
+    color: var(--green-bright);
+    top: 9px;
+  }
+
+  /* REVENUE MODEL */
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-bottom: 48px;
+  }
+
+  .revenue-card {
+    background: var(--warm-white);
+    padding: 32px;
+  }
+
+  .revenue-card-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-bright);
+    margin-bottom: 10px;
+  }
+
+  .revenue-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+
+  .revenue-card p {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* AI NOTE */
+  .ai-note {
+    background: var(--green-deep);
+    padding: 48px 60px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .ai-note-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 12px;
+  }
+
+  .ai-note-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  .ai-note-title span { color: var(--green-light); }
+
+  .ai-phases { display: flex; flex-direction: column; gap: 16px; }
+
+  .ai-phase {
+    border-left: 2px solid var(--green-mid);
+    padding-left: 20px;
+  }
+
+  .ai-phase.active { border-left-color: var(--green-bright); }
+  .ai-phase.future { border-left-color: rgba(74,158,63,0.3); }
+
+  .ai-phase-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .ai-phase.active .ai-phase-tag { color: var(--green-light); }
+  .ai-phase.future .ai-phase-tag { color: rgba(245,240,232,0.3); }
+
+  .ai-phase-text {
+    font-size: 13px;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.6;
+  }
+
+  /* ACTUATOR NOTE */
+  .actuator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .actuator-card {
+    background: var(--warm-white);
+    padding: 32px;
+  }
+
+  .actuator-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+  }
+
+  .actuator-card .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  .tag-retrofit { background: var(--green-pale); color: var(--green-mid); }
+  .tag-fullkit { background: var(--green-deep); color: var(--green-light); }
+
+  .actuator-card p {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .actuator-card ul {
+    list-style: none;
+  }
+
+  .actuator-card ul li {
+    font-size: 12px;
+    color: var(--text-mid);
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .actuator-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--green-bright);
+    font-size: 11px;
+  }
+
+  .highlight-box {
+    background: var(--green-pale);
+    border-left: 3px solid var(--green-bright);
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--green-deep);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--green-deep);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green-light);
+    letter-spacing: -1px;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: rgba(245,240,232,0.3);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .hero, .section, .ai-note, .footer { padding: 48px 24px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .phases, .revenue-grid, .actuator-grid { grid-template-columns: 1fr; }
+    .ai-note { grid-template-columns: 1fr; }
+    .tiers { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Business Model — Internal Document v1.0</div>
+  <h1>GHUSUN<br><span>Business Model</span></h1>
+  <p class="hero-sub">Smart Greenhouse Management — Jordan & MENA Region</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">Tiers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">JOD</div>
+      <div class="hero-stat-label">Currency</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Revenue Streams</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Phases</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTUATOR STRATEGY -->
+<div class="section">
+  <div class="section-label">Hardware Strategy</div>
+  <div class="section-title">Actuator Approach —<br>Retrofit or Full Kit?</div>
+  <div class="actuator-grid">
+    <div class="actuator-card">
+      <h3>Option A — Retrofit Mode</h3>
+      <span class="tag tag-retrofit">Lower Barrier to Entry</span>
+      <p>GHUSUN integrates with the farmer's <em>existing</em> actuators — pumps, fans, vents — using smart relay switches. If a farmer has a manual button for ventilation, a relay module sits inline and GHUSUN "presses" it digitally. No need to replace working hardware.</p>
+      <ul>
+        <li>Relay module interfaces with existing wiring</li>
+        <li>Servo/mechanical actuator for physical switches if needed</li>
+        <li>Zero infrastructure destruction</li>
+        <li>Installation time: 2–4 hours</li>
+        <li>Ideal for farmers with existing greenhouses</li>
+      </ul>
+      <div class="highlight-box">
+        ✓ <strong>Recommended as the default entry point.</strong> Lowers switching cost dramatically and builds trust before the farmer commits to new hardware.
+      </div>
+    </div>
+    <div class="actuator-card">
+      <h3>Option B — Full Kit</h3>
+      <span class="tag tag-fullkit">Turnkey Solution</span>
+      <p>GHUSUN provides the complete hardware stack — sensors, controller, pumps, fan, LED grow lights — all pre-wired, tested, and ready to deploy. Ideal for new greenhouses or farmers with no existing automation.</p>
+      <ul>
+        <li>ESP32-S3 controller unit (GHUSUN-branded)</li>
+        <li>DHT11, soil moisture, LDR sensor array</li>
+        <li>Irrigation pump(s) + relay board</li>
+        <li>Ventilation fan + LED grow light strip</li>
+        <li>Weatherproof enclosure + power supply</li>
+        <li>Installation + commissioning by GHUSUN team</li>
+      </ul>
+      <div class="highlight-box">
+        ✓ <strong>Higher upfront revenue per customer.</strong> Sold as an add-on or bundled with Pro/Enterprise tiers. Commands premium pricing due to turnkey convenience.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIERS -->
+<div class="section" style="background: #f7f4ee;">
+  <div class="section-label">Pricing Tiers</div>
+  <div class="section-title">Four Plans —<br>One System</div>
+  <div class="tiers">
+
+    <!-- FREE -->
+    <div class="tier">
+      <div class="tier-badge">Entry</div>
+      <div class="tier-icon">🌱</div>
+      <div class="tier-name">Seedling</div>
+      <div class="tier-target">Individual farmer, trial, or student</div>
+
+      <div class="tier-price-block">
+        <div class="tier-price-label">Monthly Fee</div>
+        <div class="tier-price">0 JOD</div>
+        <div class="tier-price-note">Free forever — monitoring only</div>
+      </div>
+
+      <div class="tier-divider"></div>
+      <div class="tier-section-label">Hardware</div>
+      <ul class="tier-features tier-missing">
+        <li>No hardware included</li>
+        <li>Self-sourced sensors required</li>
+      </ul>
+
+      <div class="tier-section-label">Software</div>
+      <ul class="tier-features">
+        <li>Real-time sensor dashboard (read-only)</li>
+        <li>Basic alerts via app notification</li>
+        <li>1 greenhouse zone</li>
+        <li>7-day data history</li>
+      </ul>
+
+      <div class="tier-section-label">AI</div>
+      <ul class="tier-features tier-missing">
+        <li>No AI decisions included</li>
+        <li>No actuator control</li>
+      </ul>
+
+      <div class="tier-section-label">Support</div>
+      <ul class="tier-features">
+        <li>Community forum only</li>
+      </ul>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="tier">
+      <div class="tier-badge">Most Popular</div>
+      <div class="tier-icon">🌿</div>
+      <div class="tier-name">Grower</div>
+      <div class="tier-target">Small farmer — 1 greenhouse</div>
+
+      <div class="tier-price-block">
+        <div class="tier-price-label">One-Time Setup</div>
+        <div class="tier-price">390 JOD</div>
+        <div class="tier-price-note">+ 25 JOD/month subscription</div>
+      </div>
+
+      <div class="tier-divider"></div>
+      <div class="tier-section-label">Hardware (Retrofit)</div>
+      <ul class="tier-features">
+        <li>ESP32-S3 controller unit</li>
+        <li>DHT11 + soil moisture + LDR sensors</li>
+        <li>Relay board (connects to existing actuators)</li>
+        <li>Android app + Firebase setup</li>
+      </ul>
+
+      <div class="tier-section-label">Software</div>
+      <ul class="tier-features">
+        <li>Full dashboard + actuator control</li>
+        <li>2 greenhouse zones</li>
+        <li>30-day data history</li>
+        <li>SMS + app alerts</li>
+        <li>Plant profiles: Mint, Basil</li>
+      </ul>
+
+      <div class="tier-section-label">AI</div>
+      <ul class="tier-features">
+        <li>200 AI decisions/month included</li>
+        <li>Confidence scores + severity levels</li>
+        <li>Overage: 0.05 JOD per decision</li>
+      </ul>
+
+      <div class="tier-section-label">Support</div>
+      <ul class="tier-features">
+        <li>Email support (48hr response)</li>
+        <li>Remote diagnostics</li>
+      </ul>
+    </div>
+
+    <!-- PRO -->
+    <div class="tier featured">
+      <div class="tier-badge">Recommended</div>
+      <div class="tier-icon">🌳</div>
+      <div class="tier-name">Pro Farm</div>
+      <div class="tier-target">Serious farmer — multi-zone operation</div>
+
+      <div class="tier-price-block">
+        <div class="tier-price-label">One-Time Setup</div>
+        <div class="tier-price">850 JOD</div>
+        <div class="tier-price-note">+ 55 JOD/month subscription</div>
+      </div>
+
+      <div class="tier-divider"></div>
+      <div class="tier-section-label">Hardware (Full Kit)</div>
+      <ul class="tier-features">
+        <li>ESP32-S3 controller (GHUSUN-branded)</li>
+        <li>Full sensor array (all 3 types)</li>
+        <li>Irrigation pump + relay board</li>
+        <li>Ventilation fan + LED grow lights</li>
+        <li>Weatherproof enclosure + power supply</li>
+        <li>On-site installation by GHUSUN team</li>
+      </ul>
+
+      <div class="tier-section-label">Software</div>
+      <ul class="tier-features">
+        <li>Unlimited zones</li>
+        <li>90-day data history + export</li>
+        <li>Advanced analytics dashboard</li>
+        <li>Custom plant profile creation</li>
+        <li>Multi-device access</li>
+      </ul>
+
+      <div class="tier-section-label">AI</div>
+      <ul class="tier-features">
+        <li>1,000 AI decisions/month</li>
+        <li>Predictive alerts (pre-emptive action)</li>
+        <li>Seasonal crop optimization</li>
+        <li>Overage: 0.04 JOD per decision</li>
+      </ul>
+
+      <div class="tier-section-label">Support</div>
+      <ul class="tier-features">
+        <li>Priority support (24hr response)</li>
+        <li>Quarterly on-site maintenance visit</li>
+        <li>1-year hardware warranty</li>
+      </ul>
+    </div>
+
+    <!-- ENTERPRISE -->
+    <div class="tier">
+      <div class="tier-badge">Enterprise</div>
+      <div class="tier-icon">🏭</div>
+      <div class="tier-name">Cooperative</div>
+      <div class="tier-target">Agricultural co-ops, institutions, investors</div>
+
+      <div class="tier-price-block">
+        <div class="tier-price-label">Pricing</div>
+        <div class="tier-price">Custom</div>
+        <div class="tier-price-note">Quote-based — contact GHUSUN</div>
+      </div>
+
+      <div class="tier-divider"></div>
+      <div class="tier-section-label">Hardware</div>
+      <ul class="tier-features">
+        <li>Multiple units deployed across farms</li>
+        <li>Centralized hardware management</li>
+        <li>Dedicated installation team</li>
+        <li>Custom sensor configurations</li>
+      </ul>
+
+      <div class="tier-section-label">Software</div>
+      <ul class="tier-features">
+        <li>Multi-farm management dashboard</li>
+        <li>Unlimited zones across all farms</li>
+        <li>Full data history + API access</li>
+        <li>Custom reporting for Ministry/NGO use</li>
+        <li>White-label option available</li>
+      </ul>
+
+      <div class="tier-section-label">AI</div>
+      <ul class="tier-features">
+        <li>Unlimited AI decisions</li>
+        <li>Custom model fine-tuning (Phase 2)</li>
+        <li>Aggregated insights across all farms</li>
+        <li>LLaMA local deployment (roadmap)</li>
+      </ul>
+
+      <div class="tier-section-label">Support</div>
+      <ul class="tier-features">
+        <li>Dedicated account manager</li>
+        <li>SLA-backed response time</li>
+        <li>Monthly on-site visits</li>
+        <li>Full hardware replacement warranty</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- COST BREAKDOWN -->
+<div class="section">
+  <div class="section-label">Cost Breakdown</div>
+  <div class="section-title">What Each Cost<br>Actually Covers</div>
+
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Type</th>
+        <th>Est. Cost (JOD)</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="category-row"><td colspan="4">Hardware — Per Unit</td></tr>
+      <tr>
+        <td class="item-name">ESP32-S3 microcontroller</td>
+        <td>One-time</td>
+        <td class="price">5–10</td>
+        <td>Core brain of the system</td>
+      </tr>
+      <tr>
+        <td class="item-name">Sensor array (DHT11 + soil + LDR)</td>
+        <td>One-time</td>
+        <td class="price">8–15</td>
+        <td>Replace every 2–3 years</td>
+      </tr>
+      <tr>
+        <td class="item-name">Relay board</td>
+        <td>One-time</td>
+        <td class="price">5–8</td>
+        <td>Controls actuators</td>
+      </tr>
+      <tr>
+        <td class="item-name">Full actuator kit (pump + fan + LED)</td>
+        <td>Optional / Full Kit only</td>
+        <td class="price">40–80</td>
+        <td>Only if farmer has no existing hardware</td>
+      </tr>
+      <tr>
+        <td class="item-name">Enclosure + wiring + power supply</td>
+        <td>One-time</td>
+        <td class="price">15–25</td>
+        <td>Weatherproofing for greenhouse environment</td>
+      </tr>
+
+      <tr class="category-row"><td colspan="4">Deployment — Per Installation</td></tr>
+      <tr>
+        <td class="item-name">Travel + labor (installation team)</td>
+        <td>One-time</td>
+        <td class="price">30–60</td>
+        <td>Depends on distance within Jordan</td>
+      </tr>
+      <tr>
+        <td class="item-name">Commissioning + calibration</td>
+        <td>One-time</td>
+        <td class="price">20–30</td>
+        <td>Sensor calibration, zone setup, app pairing</td>
+      </tr>
+      <tr>
+        <td class="item-name">Farmer training session</td>
+        <td>One-time</td>
+        <td class="price">15–25</td>
+        <td>1–2 hour on-site walkthrough</td>
+      </tr>
+
+      <tr class="category-row"><td colspan="4">Software — Monthly Operating Costs (GHUSUN's side)</td></tr>
+      <tr>
+        <td class="item-name">Firebase (per active device)</td>
+        <td>Monthly</td>
+        <td class="price">~1–3</td>
+        <td>Scales with data volume; free tier covers early stage</td>
+      </tr>
+      <tr>
+        <td class="item-name">OpenAI API (per 200 decisions)</td>
+        <td>Monthly</td>
+        <td class="price">~3–8</td>
+        <td>GPT-4o-mini keeps cost low; drops significantly in Phase 2</td>
+      </tr>
+      <tr>
+        <td class="item-name">Server / backend hosting</td>
+        <td>Monthly</td>
+        <td class="price">~5–15</td>
+        <td>FastAPI on cloud; shared across all users</td>
+      </tr>
+
+      <tr class="category-row"><td colspan="4">Maintenance — Ongoing</td></tr>
+      <tr>
+        <td class="item-name">Sensor replacement (per visit)</td>
+        <td>Every 2–3 years</td>
+        <td class="price">10–20</td>
+        <td>DHT11 and soil sensors degrade in humid environments</td>
+      </tr>
+      <tr>
+        <td class="item-name">On-site maintenance visit</td>
+        <td>Quarterly (Pro) / Monthly (Enterprise)</td>
+        <td class="price">25–50</td>
+        <td>Physical inspection, firmware update, recalibration</td>
+      </tr>
+      <tr>
+        <td class="item-name">Remote diagnostics + bug fixes</td>
+        <td>As needed</td>
+        <td class="price">Included in plan</td>
+        <td>Covered under subscription</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- REVENUE MODEL -->
+<div class="section" style="background: #f7f4ee;">
+  <div class="section-label">Revenue Model</div>
+  <div class="section-title">Three Streams,<br>One Product</div>
+  <div class="revenue-grid">
+    <div class="revenue-card">
+      <div class="revenue-card-label">Stream 01</div>
+      <div class="revenue-card-title">Hardware Sales</div>
+      <p>One-time revenue from selling the GHUSUN controller unit, sensor kit, and optional full actuator kit. Margin is built in above raw component cost. Retrofit kits are lower cost but higher volume. Full kits command premium pricing and justify higher setup fees.</p>
+    </div>
+    <div class="revenue-card">
+      <div class="revenue-card-label">Stream 02</div>
+      <div class="revenue-card-title">Subscription (SaaS)</div>
+      <p>Monthly recurring revenue from software access, AI decision quota, dashboard features, and support tiers. This is the most predictable and scalable revenue stream. As the user base grows, per-user backend costs decrease while revenue grows linearly.</p>
+    </div>
+    <div class="revenue-card">
+      <div class="revenue-card-label">Stream 03</div>
+      <div class="revenue-card-title">AI Overage & Add-ons</div>
+      <p>Pay-per-use revenue when farmers exceed their monthly AI decision quota. Additional plant profiles, advanced analytics exports, and custom reporting for cooperatives or government partners also fall here. Predictable usage generates predictable revenue.</p>
+    </div>
+    <div class="revenue-card">
+      <div class="revenue-card-label">Stream 04 — Future</div>
+      <div class="revenue-card-title">Data & Partnerships</div>
+      <p>As GHUSUN accumulates aggregated, anonymized farm data across Jordan, this dataset becomes valuable to seed companies, the Ministry of Agriculture, NGOs like FAO, and agricultural research institutions. B2G (business-to-government) partnerships are a realistic long-term revenue channel.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AI STRATEGY -->
+<div class="ai-note">
+  <div>
+    <div class="ai-note-label">AI Roadmap</div>
+    <div class="ai-note-title">From<br><span>LLM</span><br>to Local<br><span>Intelligence</span></div>
+  </div>
+  <div class="ai-phases">
+    <div class="ai-phase active">
+      <div class="ai-phase-tag">◆ Phase 1 — Now (Current)</div>
+      <div class="ai-phase-text">OpenAI API (GPT-4o-mini) powers all AI decisions. Agentic reasoning with confidence scores and severity levels. Cost is per-API-call — manageable at small scale but not sustainable at thousands of farms. This is the right approach for a student project and early deployment.</div>
+    </div>
+    <div class="ai-phase future">
+      <div class="ai-phase-tag">◇ Phase 2 — 1–2 Years</div>
+      <div class="ai-phase-text">LLM-generated decisions are used as labeled training data. A lightweight fine-tuned model (LSTM, small transformer, or fine-tuned TinyLLaMA) is trained on GHUSUN-specific agricultural decisions. This model runs cheaply on our own servers — dropping per-decision cost by 10–50x. LLM remains for complex edge cases only.</div>
+    </div>
+    <div class="ai-phase future">
+      <div class="ai-phase-tag">◇ Phase 3 — 3+ Years</div>
+      <div class="ai-phase-text">LLaMA-based model deployed locally on-device or on a local server at each farm. No internet required for AI decisions. Full data privacy. No ongoing API cost. This is the competitive moat — a locally-running, Jordan-specific agricultural AI that no enterprise system offers.</div>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEE -->
+<div class="section" style="background: #f7f4ee;">
+  <div class="section-label">Customer Protection</div>
+  <div class="section-title">The GHUSUN<br>Guarantee</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-bottom: 48px;">
+
+    <div style="background: var(--green-deep); padding: 48px 40px; grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: center;">
+      <div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 72px; font-weight: 800; color: var(--green-light); line-height: 1;">60</div>
+        <div style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-top: 4px;">Day Guarantee</div>
+        <div style="margin-top: 24px; font-size: 28px; font-weight: 700; font-family: 'Syne', sans-serif; color: var(--amber-light);">50%</div>
+        <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-top: 4px;">Hardware Refund</div>
+      </div>
+      <div>
+        <div style="font-family: 'Lora', serif; font-style: italic; font-size: 20px; color: var(--cream); line-height: 1.5; margin-bottom: 20px;">
+          "If GHUSUN doesn't work for your greenhouse within 60 days, we come to you, pick up our hardware, and refund 50% of your hardware cost. No questions asked — as long as the equipment is undamaged and returned complete."
+        </div>
+        <div style="font-size: 11px; color: rgba(245,240,232,0.4); letter-spacing: 1px;">— GHUSUN Satisfaction Guarantee</div>
+      </div>
+    </div>
+
+    <div style="background: var(--warm-white); padding: 36px 32px;">
+      <div style="font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--green-bright); margin-bottom: 16px;">What's Covered</div>
+      <ul style="list-style: none;">
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--green-bright);">✓</span>
+          50% refund on hardware setup cost (Grower: 195 JOD back / Pro: 425 JOD back)
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--green-bright);">✓</span>
+          Free pickup — GHUSUN team collects all hardware from your farm
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--green-bright);">✓</span>
+          Any monthly subscription fees paid are fully refunded
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--green-bright);">✓</span>
+          Valid for all paid tiers (Grower and Pro Farm)
+        </li>
+      </ul>
+    </div>
+
+    <div style="background: var(--warm-white); padding: 36px 32px;">
+      <div style="font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 16px;">Conditions & Exclusions</div>
+      <ul style="list-style: none;">
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--amber);">—</span>
+          Request must be made within 60 days of installation date
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--amber);">—</span>
+          All hardware must be returned undamaged, complete, and free of misuse
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--amber);">—</span>
+          Installation & deployment labor cost is non-refundable (sunk cost)
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative; border-bottom: 1px dashed var(--border);">
+          <span style="position: absolute; left: 0; color: var(--amber);">—</span>
+          Damage due to water, fire, incorrect wiring, or third-party tampering voids guarantee
+        </li>
+        <li style="font-size: 13px; color: var(--text-mid); padding: 10px 0; padding-left: 20px; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--amber);">—</span>
+          Not applicable to Seedling (free) or Cooperative (custom contract) tiers
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- PRICING RATIONALE -->
+  <div style="background: var(--warm-white); border: 1px solid var(--border); padding: 36px 40px;">
+    <div style="font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--green-bright); margin-bottom: 20px;">Revised Pricing Rationale</div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+      <div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--green-deep); margin-bottom: 8px;">Grower — 390 JOD setup</div>
+        <div style="font-size: 12px; color: var(--text-mid); line-height: 1.7;">
+          Hardware cost: ~80 JOD<br>
+          Installation labor: ~50 JOD<br>
+          Software setup + onboarding: ~30 JOD<br>
+          Brand + warranty risk buffer: ~40 JOD<br>
+          Guarantee reserve (50% return risk): ~60 JOD<br>
+          <strong style="color: var(--green-mid);">Margin: ~130 JOD per unit</strong>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--green-deep); margin-bottom: 8px;">Pro Farm — 850 JOD setup</div>
+        <div style="font-size: 12px; color: var(--text-mid); line-height: 1.7;">
+          Full hardware kit: ~180 JOD<br>
+          Installation + commissioning: ~80 JOD<br>
+          Training + documentation: ~30 JOD<br>
+          Brand + warranty risk buffer: ~60 JOD<br>
+          Guarantee reserve (50% return risk): ~130 JOD<br>
+          <strong style="color: var(--green-mid);">Margin: ~370 JOD per unit</strong>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--green-deep); margin-bottom: 8px;">Why Not Lower?</div>
+        <div style="font-size: 12px; color: var(--text-mid); line-height: 1.7;">
+          A product priced too low signals low quality — especially for something managing a farmer's livelihood. The guarantee itself justifies higher pricing: the farmer pays more, but carries zero risk. That is a premium offer, and should be priced as one.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASES -->
+<div class="section">
+  <div class="section-label">Go-to-Market</div>
+  <div class="section-title">Three Phases<br>to Scale</div>
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div class="phase-title">Prove It</div>
+      <div class="phase-period">Now — 12 Months</div>
+      <ul>
+        <li>Deploy 5–10 pilot units with real farmers near Amman / Jordan Valley</li>
+        <li>Offer Seedling tier free to build trust and collect real data</li>
+        <li>Founders handle all installation and support personally</li>
+        <li>Gather feedback to refine plant profiles and AI decisions</li>
+        <li>Document every deployment as a case study</li>
+        <li>Target: first 3 paying Grower-tier customers</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div class="phase-title">Grow It</div>
+      <div class="phase-period">Year 1–2</div>
+      <ul>
+        <li>Partner with 1–2 agricultural cooperatives for bulk deployment</li>
+        <li>Apply for Ministry of Agriculture or Royal Scientific Society grants</li>
+        <li>Hire a part-time installation technician</li>
+        <li>Launch Pro Farm tier with full kit hardware</li>
+        <li>Begin training proprietary model on accumulated decision data</li>
+        <li>Target: 50–100 active subscriptions</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div class="phase-title">Scale It</div>
+      <div class="phase-period">Year 3+</div>
+      <ul>
+        <li>Deploy LLaMA-based local AI — eliminate ongoing API cost</li>
+        <li>Expand to MENA region (Palestine, Iraq, Saudi Arabia)</li>
+        <li>Launch white-label Cooperative tier for government programs</li>
+        <li>Monetize aggregated farm data with research/NGO partners</li>
+        <li>Explore Series A funding for hardware manufacturing at scale</li>
+        <li>Target: 500+ active farms, regional presence</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">GHUSUN</div>
+  <div class="footer-note">
+    Business Model — Internal Document v1.0<br>
+    Prepared for capstone presentation · Jordan · 2025–2026
+  </div>
+</div>
+
+</body>
+</html>
